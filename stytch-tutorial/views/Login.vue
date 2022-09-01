@@ -1,11 +1,11 @@
 <template>
-  <div>Home</div>
+  <div>Login</div>
 </template>
-
+  
 <script setup>
-
+  
 </script>
-
+  
 <style scoped>
-
+  
 </style>
