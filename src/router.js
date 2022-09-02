@@ -29,7 +29,14 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         // Authentication check
-        return
+        const token = localStorage.getItem('token')
+    
+        if (token) {
+            // Check if token is valid
+            return next()
+        }
+
+        return next('/login')
     }
 
     next()
