@@ -89,7 +89,20 @@ label {
 
 label span {
   display: block;
-  color: var(--gray);
+  color: var(--dark);
   font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+input:not([type="submit"]) {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--gray);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  font-size: 1.125rem;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
 }
 </style>
