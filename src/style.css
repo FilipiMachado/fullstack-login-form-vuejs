@@ -1,3 +1,37 @@
 :root {
   --primary: #e11d48;
+  --primary-dark: #c32345;
+  --gray: #9ca3af;
+  --light: #f3f4f6;
+  --dark: #111827;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: var(--primary);
+}
+
+input {
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 9px;
+  padding: 0.5rem;
+  padding-right: calc(0.5rem - 5px);
+  border: 2px solid #fff;
+  color: #fff;
+  margin-bottom: 1.5rem;
 }
