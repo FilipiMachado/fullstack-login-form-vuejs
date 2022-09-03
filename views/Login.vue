@@ -98,11 +98,35 @@ label span {
 input:not([type="submit"]) {
   display: block;
   width: 100%;
-  border: 1px solid var(--gray);
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  font-size: 1.125rem;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--gray);
+  background-color: var(--light);
   margin-bottom: 1.5rem;
+}
+
+input:not([type="submit"])::placeholder {
+  color: var(--gray);
+  font-style: italic;
+}
+
+input[type="submit"] {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--primary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--primary-dark);
 }
 </style>
