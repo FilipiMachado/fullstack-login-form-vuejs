@@ -90,3 +90,26 @@ app.post('/authenticate', async (req, res) => {
         })
     }
 })
+
+app.post('/logout', async (req, res) => {
+    const { session_token } = req.body;
+
+    try {
+        await client.sessions.revokes({ session_token })
+
+        res.json({
+            success: true,
+            message: "Successfully logged out",
+        })
+    } catch (err) {
+        console.log(err)
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err,
+        })
+    }
+})
+
+app.listen(port, () => console.log(`Server started on port ${port}`))
