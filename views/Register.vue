@@ -33,10 +33,25 @@
   
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const email = ref('')
 const password = ref('')
 const confPassword = ref('')
+
+const Register = async () => {
+  if (!email || !password || !confPassword) {
+    return alert("Por favor preencha todos os campos")
+  }
+
+  if (password !== confPassword) {
+    return alert("As senhas não são iguais")
+  }
+
+  const res = await fetch('http://localhost:3333')
+}
 
 </script>
   
