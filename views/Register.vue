@@ -50,7 +50,16 @@ const Register = async () => {
     return alert("As senhas não são iguais")
   }
 
-  const res = await fetch('http://localhost:3333')
+  const res = await fetch('http://localhost:3333/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value,
+    })
+  })
 }
 
 </script>
