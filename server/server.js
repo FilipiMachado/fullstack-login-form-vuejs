@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
-    const { email, password} = req.body;
+    const { email, password } = req.body;
 
     try {
         const resp = await client.passwords.create({
@@ -32,6 +32,53 @@ app.post('/register', async (req, res) => {
             success: true,
             message: "User created successfully",
             token: resp.session_token,
+        })
+    } catch (err) {
+        console.log(err)
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err,
+        })
+    }
+})
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const resp = await client.passwords.authenticate({
+            email,
+            password,
+            session_duration_minutes: 60,
+        })
+
+        res.json({
+            success: true,
+            message: "User logged in successfully",
+            token: resp.session_token,
+        })
+    } catch (err) {
+        console.log(err)
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err,
+        })
+    }
+})
+
+app.post('/authenticate', async (req, res) => {
+    const { session_token } = req.body;
+
+    try {
+        await client.sessions.authenticate({ session_token })
+
+        res.json({
+            success: true,
+            message: "Token is valid",
         })
     } catch (err) {
         console.log(err)
