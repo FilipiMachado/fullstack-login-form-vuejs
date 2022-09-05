@@ -6,7 +6,7 @@
       <p>Faça o login ou crie uma nova conta.</p>
     </header>
 
-    <form @submit.prevent="">
+    <form @submit.prevent="Register">
       <label>
         <span>Seu Email</span>
         <input type="email" v-model="email" placeholder="Digite o email">
@@ -42,11 +42,11 @@ const password = ref('')
 const confPassword = ref('')
 
 const Register = async () => {
-  if (!email || !password || !confPassword) {
+  if (!email.value || !password.value || !confPassword.value) {
     return alert("Por favor preencha todos os campos")
   }
 
-  if (password !== confPassword) {
+  if (password.value !== confPassword.value) {
     return alert("As senhas não são iguais")
   }
 
@@ -59,7 +59,14 @@ const Register = async () => {
       email: email.value,
       password: password.value,
     })
-  })
+  }).then(res => res.json())
+
+  if (res.success) {
+    localStorage.setItem('token', res.token)
+    router.push('/')
+  } else {
+    res.message
+  }
 }
 
 </script>
