@@ -25,6 +25,7 @@ import { useRouter } from 'vue-router'
       router.push('/login')
     } else {
       alert(res.message)
+      console.log(res.message)
     }
   }
 </script>

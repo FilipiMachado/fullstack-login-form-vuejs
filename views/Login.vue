@@ -6,7 +6,7 @@
       <p>Faça o login ou crie uma nova conta.</p>
     </header>
 
-    <form @submit.prevent="">
+    <form @submit.prevent="Login">
       <label>
         <span>Seu Email</span>
         <input type="email" v-model="email" placeholder="Digite o email">
@@ -29,9 +29,36 @@
   
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const email = ref('')
 const password = ref('')
+
+const Login = async () => {
+  if (!email.value || !password.value) {
+    return alert("Por favor preencha todos os campos")
+  }
+
+  const res = await fetch('http://localhost:3333/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value,
+    })
+  }).then(res => res.json())
+
+  if (res.success) {
+    localStorage.setItem('token', res.token)
+    router.push('/')
+  } else {
+    res.message
+  }
+}
 
 </script>
   
